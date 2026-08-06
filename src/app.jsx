@@ -343,7 +343,7 @@ function Navbar({ onOpenModal }) {
         </div>
         <div className="md:hidden">
           <button
-            onClick={() => onOpenModal('get-started')}
+            onClick={() => onOpenModal('order')}
             className="bg-white text-black hover:bg-white/90 px-4 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all cursor-pointer shadow-md active:scale-95"
           >
             Get Started
@@ -367,7 +367,7 @@ function Navbar({ onOpenModal }) {
           <IconChevronDown className="w-3.5 h-3.5 opacity-70" />
         </button>
         <button
-          onClick={() => onOpenModal('pricing')}
+          onClick={() => onOpenModal('booking')}
           className="flex items-center space-x-1 text-white/90 hover:text-white transition-colors cursor-pointer px-2.5 py-1.5 rounded-lg bg-white/5 md:bg-transparent hover:bg-white/10 active:bg-white/20"
         >
           <span>Pricing</span>
@@ -377,7 +377,7 @@ function Navbar({ onOpenModal }) {
 
       <div className="hidden md:flex items-center space-x-6">
         <button
-          onClick={() => onOpenModal('get-started')}
+          onClick={() => onOpenModal('order')}
           className="bg-white text-black hover:bg-white/90 px-5 py-2 rounded-full text-sm font-semibold tracking-tight transition-all cursor-pointer shadow-md hover:scale-[1.02] active:scale-95"
         >
           Get Started
@@ -393,7 +393,7 @@ function HeroBanner({ onOpenModal }) {
     <section className="relative w-full min-h-[85vh] py-20 sm:py-28 md:py-36 flex flex-col justify-center items-center px-4 sm:px-8 text-white overflow-hidden font-['DM_Sans',sans-serif]">
       <div className="flex flex-col items-center text-center max-w-4xl z-10 space-y-8 bg-black/20 backdrop-blur-md p-8 sm:p-12 rounded-3xl border border-white/10 shadow-2xl">
         <div
-          onClick={() => onOpenModal('get-started')}
+          onClick={() => onOpenModal('order')}
           className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 px-4 py-1.5 rounded-full text-xs font-medium text-white/90 cursor-pointer hover:bg-white/20 hover:border-white/40 transition-all shadow-sm"
         >
           <IconSparkles className="w-3.5 h-3.5 text-white" />
@@ -410,7 +410,7 @@ function HeroBanner({ onOpenModal }) {
 
         <div className="pt-2 flex flex-row items-center justify-center space-x-4">
           <button
-            onClick={() => onOpenModal('get-started')}
+            onClick={() => onOpenModal('order')}
             className="bg-white text-black hover:bg-white/90 px-8 py-3.5 rounded-full text-sm font-semibold tracking-tight cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-xl"
           >
             Get Started
@@ -506,13 +506,13 @@ function OurTeamSection() {
   const teamMembers = [
     {
       id: 'team-1',
-      name: 'Kwame Daniel',
+      name: 'Sentongo Daniel',
       role: 'Founder & Managing Director',
       experience: '14+ Yrs Experience',
       rating: '5.0',
       phone: '+971 58 273 7082',
       whatsapp: 'https://wa.me/971582833390',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600',
+      image: 'https://res.cloudinary.com/dirfcqs1f/image/upload/v1785981462/Grok_Image_2026-07-14_at_18.28.37_qvk08j.jpg',
     },
     {
       id: 'team-2',
@@ -536,13 +536,13 @@ function OurTeamSection() {
     },
     {
       id: 'team-4',
-      name: 'Kofi Mensah',
-      role: 'Fleet Protocol & Security Lead',
+      name: 'Kibalama Paul',
+      role: 'Web Master & Graphics Editor',
       experience: '12+ Yrs Experience',
       rating: '4.9',
-      phone: '+971 58 273 7082',
-      whatsapp: 'https://wa.me/971582833390',
-      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=600',
+      phone: '+256757460297',
+      whatsapp: 'https://wa.me/256757460297',
+      image: 'https://res.cloudinary.com/dirfcqs1f/image/upload/v1748599977/OBI_8725_arcf8s.jpg',
     },
   ];
 
@@ -1035,9 +1035,135 @@ function GetStartedBookingModal({ isOpen, onClose }) {
   );
 }
 
+// --- PRICING ORDER MODAL (Get Started → Join us in a Snap) ---
+function PricingOrderModal({ isOpen, onClose }) {
+  const [fullName, setFullName] = useState('');
+  const [gender, setGender] = useState('Male');
+  const [selectedPackage, setSelectedPackage] = useState('City Tour & Daily Chauffeur (AED 800/day)');
+  const [email, setEmail] = useState('');
+  const [contact, setContact] = useState('');
+  const [virtualToken, setVirtualToken] = useState(null);
+  const [isCopied, setIsCopied] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  if (!isOpen) return null;
+
+  const generateToken = () => {
+    const a = Math.floor(1000 + Math.random() * 9000);
+    const b = Math.floor(1000 + Math.random() * 9000);
+    return `PD-${a}-${b}`;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setTimeout(() => { setVirtualToken(generateToken()); setIsSubmitting(false); }, 600);
+  };
+
+  const handleCopy = () => {
+    if (virtualToken) { navigator.clipboard.writeText(virtualToken); setIsCopied(true); setTimeout(() => setIsCopied(false), 2500); }
+  };
+
+  const handleReset = () => { setVirtualToken(null); setFullName(''); setEmail(''); setContact(''); onClose(); };
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6 font-['DM_Sans'] overflow-y-auto">
+      <div className="relative w-full max-w-lg bg-[#15141e] border border-white/10 rounded-[2rem] p-6 sm:p-9 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(139,92,246,0.12)] text-white space-y-6 my-auto overflow-hidden">
+        <div className="absolute -top-24 -left-24 w-60 h-60 bg-purple-600/20 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute -bottom-24 -right-24 w-60 h-60 bg-indigo-600/20 rounded-full blur-[80px] pointer-events-none" />
+        <button onClick={onClose} className="absolute top-5 right-5 text-white/60 hover:text-white p-2 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 transition-all cursor-pointer z-20" title="Close">
+          <IconX className="w-5 h-5" />
+        </button>
+
+        {!virtualToken ? (
+          <>
+            <div className="text-center space-y-2 relative z-10 pt-2">
+              <span className="text-[11px] font-mono tracking-[0.25em] text-purple-400 font-bold uppercase block">VIP Package Reservation</span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Join us in a Snap</h2>
+              <p className="text-xs text-white/60 max-w-xs mx-auto">Complete your details below to place your luxury chauffeur order.</p>
+            </div>
+            <form onSubmit={handleSubmit} className="space-y-4 relative z-10 pt-1">
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-white/80 pl-1 block">Full Name</label>
+                <div className="relative">
+                  <IconUser className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                  <input type="text" required value={fullName} onChange={e => setFullName(e.target.value)} placeholder="John Doe" className="w-full bg-[#1c1b28] text-white text-xs font-medium pl-10 pr-4 py-3.5 rounded-xl border border-white/10 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] focus:outline-none focus:border-purple-500/60 transition-all" />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-white/80 pl-1 block">Gender</label>
+                  <select value={gender} onChange={e => setGender(e.target.value)} className="w-full bg-[#1c1b28] text-white text-xs font-medium px-3.5 py-3.5 rounded-xl border border-white/10 focus:outline-none focus:border-purple-500/60 transition-all cursor-pointer appearance-none">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                  </select>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-white/80 pl-1 block">Package Chosen</label>
+                  <select value={selectedPackage} onChange={e => setSelectedPackage(e.target.value)} className="w-full bg-[#1c1b28] text-white text-xs font-medium px-3.5 py-3.5 rounded-xl border border-white/10 focus:outline-none focus:border-purple-500/60 transition-all cursor-pointer appearance-none truncate">
+                    <option value="Airport Transfers & Single Trip (AED 250)">Airport Transfer (AED 250)</option>
+                    <option value="City Tour & Daily Chauffeur (AED 800/day)">City Tour & Daily (AED 800)</option>
+                    <option value="Executive Protection VIP Elite (AED 6,500/month)">VIP Protection (AED 6,500/mo)</option>
+                  </select>
+                </div>
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-white/80 pl-1 block">Email Address</label>
+                <div className="relative">
+                  <IconMail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                  <input type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="example@site.com" className="w-full bg-[#1c1b28] text-white text-xs font-medium pl-10 pr-4 py-3.5 rounded-xl border border-white/10 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] focus:outline-none focus:border-purple-500/60 transition-all" />
+                </div>
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-white/80 pl-1 block">Contact / Phone Number</label>
+                <div className="relative">
+                  <IconPhone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                  <input type="tel" required value={contact} onChange={e => setContact(e.target.value)} placeholder="+971 50 123 4567" className="w-full bg-[#1c1b28] text-white text-xs font-medium pl-10 pr-4 py-3.5 rounded-xl border border-white/10 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] focus:outline-none focus:border-purple-500/60 transition-all" />
+                </div>
+              </div>
+              <div className="pt-3">
+                <button type="submit" disabled={isSubmitting} className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm tracking-wide shadow-[0_10px_25px_rgba(147,51,234,0.4)] hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center space-x-2 cursor-pointer disabled:opacity-50">
+                  {isSubmitting ? <span>Processing Order...</span> : <><span>Begin Your Journey</span><IconSend className="w-4 h-4" /></>}
+                </button>
+              </div>
+            </form>
+          </>
+        ) : (
+          <div className="text-center space-y-6 relative z-10 py-2">
+            <div className="w-14 h-14 rounded-full bg-purple-500/20 border border-purple-400/40 text-purple-300 flex items-center justify-center mx-auto shadow-lg">
+              <IconCheck className="w-8 h-8" />
+            </div>
+            <div className="space-y-2">
+              <span className="text-[11px] font-mono tracking-widest text-emerald-400 uppercase font-semibold">Order Submitted Successfully</span>
+              <h2 className="text-2xl font-bold text-white">Your Virtual Token</h2>
+              <p className="text-xs text-white/70 max-w-sm mx-auto">Thank you, <strong className="text-white">{fullName}</strong>! Your order has been dispatched.</p>
+            </div>
+            <div className="bg-[#1e1c2b] border-2 border-purple-500/50 rounded-2xl p-5 shadow-[inset_0_2px_8px_rgba(0,0,0,0.6)] space-y-3">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-white/50 block">Official Reservation Token</span>
+              <div className="flex items-center justify-center space-x-3 bg-black/40 border border-purple-500/30 rounded-xl py-3 px-4">
+                <span className="font-mono text-xl sm:text-2xl font-extrabold text-purple-300 tracking-wider">{virtualToken}</span>
+                <button onClick={handleCopy} className="p-2 rounded-lg bg-purple-600/30 hover:bg-purple-600/50 border border-purple-400/40 text-purple-200 transition-all cursor-pointer" title="Copy Token">
+                  <IconCopy className="w-4 h-4" />
+                </button>
+              </div>
+              {isCopied && <span className="text-[11px] text-emerald-400 font-semibold block">Token copied to clipboard!</span>}
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-xl p-4 text-left text-xs space-y-2">
+              <div className="flex items-center space-x-2 text-white/80 font-medium"><IconMail className="w-3.5 h-3.5 text-purple-400 shrink-0" /><span>Virtual token sent to: <strong className="text-white">{email}</strong></span></div>
+              <div className="flex items-center space-x-2 text-white/80 font-medium"><IconShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" /><span>Order details forwarded to CEO: <strong className="text-white">dsetongo@yahoo.com</strong></span></div>
+            </div>
+            <button onClick={handleReset} className="w-full py-3.5 rounded-xl border border-white/20 bg-white/10 hover:bg-white/20 text-xs font-bold text-white transition-all cursor-pointer">Done & Return to Site</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // --- NAV MODAL (ABOUT US, SERVICES, PRICING) ---
 function NavModal({ modal, onClose }) {
-  if (!modal || modal === 'none' || modal === 'get-started') return null;
+  if (!modal || modal === 'none' || modal === 'get-started' || modal === 'order') return null;
 
   return (
     <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 font-['DM_Sans']">
@@ -1072,7 +1198,7 @@ function NavModal({ modal, onClose }) {
           </div>
         )}
 
-        {modal === 'pricing' && (
+        {modal === 'booking' && (
           <div className="space-y-6">
             <div>
               <span className="text-xs tracking-[0.25em] text-[#ff4500] uppercase font-bold">Luxury Chauffeur Services</span>
@@ -1149,8 +1275,13 @@ function App() {
       </div>
 
       {/* Modals */}
+      <PricingOrderModal
+        isOpen={activeModal === 'order'}
+        onClose={() => setActiveModal('none')}
+      />
+
       <GetStartedBookingModal
-        isOpen={activeModal === 'get-started'}
+        isOpen={activeModal === 'booking'}
         onClose={() => setActiveModal('none')}
       />
 

@@ -17,7 +17,7 @@ interface TeamMember {
 const TEAM_MEMBERS: TeamMember[] = [
   {
     id: 'team-1',
-    name: 'Kwame Daniel',
+    name: 'Sentongo Daniel',
     role: 'Founder & Managing Director',
     experience: '14+ Yrs Experience',
     rating: '5.0',
@@ -53,14 +53,14 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: 'team-4',
-    name: 'Kofi Mensah',
-    role: 'Fleet Protocol & Security Lead',
+    name: 'Kibalama Paul',
+    role: 'Web Master & Graphics Editor',
     experience: '12+ Yrs Experience',
     rating: '4.9',
-    phone: '+971 58 273 7082',
+    phone: '+256757460297',
     email: 'dsetongo@yahoo.com',
-    whatsapp: 'https://wa.me/971582833390',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=600',
+    whatsapp: 'https://wa.me/256757460297',
+    image: 'https://res.cloudinary.com/dirfcqs1f/image/upload/v1748599977/OBI_8725_arcf8s.jpg',
     gradient: 'from-cyan-500/20 via-blue-500/10 to-transparent',
   },
 ];
@@ -68,12 +68,12 @@ const TEAM_MEMBERS: TeamMember[] = [
 export const OurTeamSection: React.FC = () => {
   return (
     <section className="w-full bg-black text-white font-['DM_Sans',sans-serif] py-20 px-4 sm:px-8 lg:px-12 border-t border-white/10 relative overflow-hidden">
-      
+
       {/* Background Subtle Gradient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-blue-900/10 via-purple-900/10 to-emerald-900/10 blur-[120px] pointer-events-none rounded-full" />
 
       <div className="max-w-6xl mx-auto space-y-12 relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">
           <div className="inline-flex items-center space-x-2 bg-white/5 border border-white/20 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest text-white/80 uppercase">
@@ -101,7 +101,7 @@ export const OurTeamSection: React.FC = () => {
               <div className={`absolute inset-0 bg-gradient-to-br ${member.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
 
               <div className="relative z-10 space-y-4">
-                
+
                 {/* Professional Headshot */}
                 <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-neutral-900 border border-white/10 shadow-lg">
                   <img
@@ -110,7 +110,7 @@ export const OurTeamSection: React.FC = () => {
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  
+
                   {/* Rating Tag */}
                   <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-md border border-white/20 px-2.5 py-1 rounded-full text-[10px] font-semibold text-white flex items-center space-x-1 shadow-md">
                     <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
@@ -131,6 +131,16 @@ export const OurTeamSection: React.FC = () => {
                   <p className="text-xs font-medium text-white/70 leading-snug mt-0.5">
                     {member.role}
                   </p>
+                  <div className="mt-2 space-y-2 text-xs text-white/70">
+                    <a href={`tel:${member.phone.replace(/\s+/g, '')}`} className="flex items-center space-x-1 hover:underline">
+                      <Phone className="w-3 h-3" />
+                      <span>{member.phone}</span>
+                    </a>
+                    <a href={member.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-1 hover:underline">
+                      <MessageSquare className="w-3 h-3" />
+                      <span>WhatsApp</span>
+                    </a>
+                  </div>
                 </div>
 
               </div>
