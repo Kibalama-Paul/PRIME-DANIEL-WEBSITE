@@ -1,12 +1,33 @@
 @import "tailwindcss";
 
-body {
-  margin: 0;
-  background-color: #0b0c10;
-  color: #ffffff;
-  overflow-x: hidden;
+@layer base {
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #0b0c10;
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
 }
 
-#root {
-  min-height: 100vh;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0c10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
 }

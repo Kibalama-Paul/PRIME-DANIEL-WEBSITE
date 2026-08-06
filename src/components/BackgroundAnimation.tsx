@@ -21,7 +21,8 @@ export const BackgroundAnimation: React.FC = () => {
 
     const currentFramePath = (index: number) => {
       const paddedIndex = String(index).padStart(3, '0');
-      return `/frames/ezgif-frame-${paddedIndex}.jpg`;
+      const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+      return `${baseUrl}frames/ezgif-frame-${paddedIndex}.jpg`;
     };
 
     const drawCover = (img: HTMLImageElement) => {
