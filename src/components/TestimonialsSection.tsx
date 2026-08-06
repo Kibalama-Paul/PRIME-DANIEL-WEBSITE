@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 
 interface Testimonial {
   name: string;
@@ -30,7 +31,7 @@ const TESTIMONIALS: Testimonial[] = [
 
 export const TestimonialsSection: React.FC = () => {
   return (
-    <section className="w-full bg-black text-white font-['DM_Sans',sans-serif] py-20 px-4 sm:px-8 lg:px-12 border-t border-white/10 relative overflow-hidden">
+    <section className="w-full bg-transparent text-white font-['DM_Sans',sans-serif] py-20 px-4 sm:px-8 lg:px-12 border-t border-white/10 relative overflow-hidden">
       {/* Subtle Background Glow/Grid effect as in reference */}
       <div 
         className="absolute inset-0 opacity-10 pointer-events-none"
@@ -40,7 +41,13 @@ export const TestimonialsSection: React.FC = () => {
         }}
       />
 
-      <div className="max-w-6xl mx-auto space-y-12 relative z-10">
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: false, amount: 0.2 }}
+        className="max-w-6xl mx-auto space-y-12 relative z-10"
+      >
         
         {/* Header */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">
@@ -57,7 +64,7 @@ export const TestimonialsSection: React.FC = () => {
           {TESTIMONIALS.map((item) => (
             <div
               key={item.name}
-              className="bg-white/[0.04] backdrop-blur-md border border-white/15 rounded-2xl p-8 flex flex-col justify-between space-y-6 hover:bg-white/[0.07] hover:border-white/30 transition-all duration-300 shadow-xl group"
+              className="bg-black/40 backdrop-blur-md border border-white/15 rounded-2xl p-8 flex flex-col justify-between space-y-6 hover:bg-white/[0.07] hover:border-white/30 transition-all duration-300 shadow-xl group"
             >
               <div className="space-y-4">
                 {/* Avatar */}
@@ -89,7 +96,7 @@ export const TestimonialsSection: React.FC = () => {
           ))}
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };

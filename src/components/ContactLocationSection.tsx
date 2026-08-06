@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Copy, Check, MapPin, Phone, Mail, Globe, Share2, Compass } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export const ContactLocationSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -13,8 +14,14 @@ export const ContactLocationSection: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-black text-white font-['DM_Sans',sans-serif] py-20 px-4 sm:px-8 lg:px-12 border-t border-white/10 relative">
-      <div className="max-w-6xl mx-auto">
+    <section className="w-full bg-transparent text-white font-['DM_Sans',sans-serif] py-20 px-4 sm:px-8 lg:px-12 border-t border-white/10 relative">
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: false, amount: 0.2 }}
+        className="max-w-6xl mx-auto"
+      >
         
         {/* Main Card Frame with dark aesthetic and subtle border */}
         <div className="relative w-full bg-white/[0.03] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row min-h-[520px]">
@@ -80,7 +87,7 @@ export const ContactLocationSection: React.FC = () => {
             <div className="pt-4 flex flex-wrap items-center justify-between gap-4">
               <button
                 onClick={handleCopyEmail}
-                className="luxus-pill-btn px-6 py-3 text-xs sm:text-sm font-medium flex items-center space-x-2 cursor-pointer transition-all"
+                className="luxus-pill-btn px-6 py-3 text-xs sm:text-sm font-medium flex items-center space-x-2 cursor-pointer transition-all bg-white/10 hover:bg-white/20 rounded-full"
               >
                 {copied ? (
                   <>
@@ -124,13 +131,13 @@ export const ContactLocationSection: React.FC = () => {
           </div>
 
           {/* Right Column: Dubai Map Location */}
-          <div className="w-full lg:w-1/2 relative min-h-[350px] lg:min-h-full bg-neutral-900 overflow-hidden border-t lg:border-t-0 lg:border-l border-white/15">
+          <div className="w-full lg:w-1/2 relative min-h-[350px] lg:min-h-full bg-black/60 overflow-hidden border-t lg:border-t-0 lg:border-l border-white/15">
             
             {/* Embedded Google Map centered on Downtown Dubai */}
             <iframe
               title="PRIME DANIEL Dubai Location Map"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28884.28188168598!2d55.2635!3d25.1972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43348a67e24b%3A0xff45e502e1ceb7e2!2sDowntown%20Dubai%20-%20Dubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
-              className="w-full h-full min-h-[380px] lg:min-h-full border-0 grayscale contrast-125 brightness-75 invert filter"
+              className="w-full h-full min-h-[380px] lg:min-h-full border-0 grayscale contrast-125 brightness-75 invert filter mix-blend-screen opacity-60"
               allowFullScreen={false}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -162,7 +169,7 @@ export const ContactLocationSection: React.FC = () => {
 
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };

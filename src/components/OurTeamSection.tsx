@@ -1,5 +1,6 @@
 import React from 'react';
 import { Phone, MessageSquare, Mail, Award, Star } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface TeamMember {
   id: string;
@@ -24,7 +25,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     phone: '+971 58 273 7082',
     email: 'dsetongo@yahoo.com',
     whatsapp: 'https://wa.me/971582833390',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600',
+    image: 'https://res.cloudinary.com/dirfcqs1f/image/upload/v1785981462/Grok_Image_2026-07-14_at_18.28.37_qvk08j.jpg',
     gradient: 'from-blue-500/20 via-purple-500/10 to-transparent',
   },
   {
@@ -67,16 +68,22 @@ const TEAM_MEMBERS: TeamMember[] = [
 
 export const OurTeamSection: React.FC = () => {
   return (
-    <section className="w-full bg-black text-white font-['DM_Sans',sans-serif] py-20 px-4 sm:px-8 lg:px-12 border-t border-white/10 relative overflow-hidden">
+    <section className="w-full bg-transparent text-white font-['DM_Sans',sans-serif] py-20 px-4 sm:px-8 lg:px-12 border-t border-white/10 relative overflow-hidden">
 
       {/* Background Subtle Gradient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-blue-900/10 via-purple-900/10 to-emerald-900/10 blur-[120px] pointer-events-none rounded-full" />
 
-      <div className="max-w-6xl mx-auto space-y-12 relative z-10">
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: false, amount: 0.1 }}
+        className="max-w-6xl mx-auto space-y-12 relative z-10"
+      >
 
         {/* Section Header */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <div className="inline-flex items-center space-x-2 bg-white/5 border border-white/20 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest text-white/80 uppercase">
+          <div className="inline-flex items-center space-x-2 bg-black/40 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest text-white/80 uppercase">
             <Award className="w-3.5 h-3.5 text-white" />
             <span>Executive Leadership & Drivers</span>
           </div>
@@ -95,7 +102,7 @@ export const OurTeamSection: React.FC = () => {
           {TEAM_MEMBERS.map((member) => (
             <div
               key={member.id}
-              className="group relative bg-white/[0.03] backdrop-blur-xl border border-white/15 rounded-2xl p-5 flex flex-col justify-between hover:border-white/40 transition-all duration-500 hover:shadow-[0_15px_35px_rgba(255,255,255,0.05)] overflow-hidden"
+              className="group relative bg-black/40 backdrop-blur-md border border-white/15 rounded-2xl p-5 flex flex-col justify-between hover:border-white/40 transition-all duration-500 hover:shadow-[0_15px_35px_rgba(255,255,255,0.05)] overflow-hidden"
             >
               {/* Subtle Card Gradient Accent Overlay */}
               <div className={`absolute inset-0 bg-gradient-to-br ${member.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
@@ -172,7 +179,7 @@ export const OurTeamSection: React.FC = () => {
           ))}
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };

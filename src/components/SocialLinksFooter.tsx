@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Home, ArrowUp } from 'lucide-react';
 import { PrimeDanielLogo } from './PrimeDanielLogo';
+import { motion } from 'motion/react';
 
 interface SocialLink {
   id: string;
@@ -83,8 +84,14 @@ export const SocialLinksFooter: React.FC<SocialLinksFooterProps> = ({ onGoHome }
   ];
 
   return (
-    <footer className="w-full bg-black text-white font-['DM_Sans',sans-serif] py-20 px-4 sm:px-8 lg:px-12 border-t border-white/10 relative">
-      <div className="max-w-4xl mx-auto flex flex-col items-center space-y-12">
+    <footer className="w-full bg-transparent text-white font-['DM_Sans',sans-serif] py-20 px-4 sm:px-8 lg:px-12 border-t border-white/10 relative">
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: false, amount: 0.2 }}
+        className="max-w-4xl mx-auto flex flex-col items-center space-y-12"
+      >
         
         {/* Brand Logo & Title */}
         <div className="text-center space-y-3 flex flex-col items-center">
@@ -109,7 +116,7 @@ export const SocialLinksFooter: React.FC<SocialLinksFooterProps> = ({ onGoHome }
                 title={`Visit PRIME DANIEL on ${social.name}`}
               >
                 {/* Inner Squercle Card */}
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#07090e] rounded-[22px] flex items-center justify-center relative overflow-hidden transition-colors group-hover:bg-[#0c0f17]">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-black/40 backdrop-blur-md border border-white/10 rounded-[22px] flex items-center justify-center relative overflow-hidden transition-colors group-hover:bg-white/[0.04]">
                   
                   {/* Internal ambient highlight */}
                   <div className="absolute inset-0 bg-white/[0.03] group-hover:bg-white/[0.08] transition-colors" />
@@ -142,7 +149,7 @@ export const SocialLinksFooter: React.FC<SocialLinksFooterProps> = ({ onGoHome }
         <div className="pt-2">
           <button
             onClick={handleGoHome}
-            className="inline-flex items-center space-x-2.5 px-6 py-3 rounded-full bg-[#181a24] hover:bg-[#222534] border border-white/20 text-white text-xs font-bold tracking-wider uppercase transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-[0_10px_25px_rgba(0,0,0,0.5)] backdrop-blur-md group"
+            className="inline-flex items-center space-x-2.5 px-6 py-3 rounded-full bg-black/40 hover:bg-black/60 border border-white/20 text-white text-xs font-bold tracking-wider uppercase transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-[0_10px_25px_rgba(0,0,0,0.5)] backdrop-blur-md group"
             title="Return to Landing Page"
           >
             <Home className="w-4 h-4 text-purple-400 group-hover:scale-110 transition-transform" />
@@ -158,7 +165,7 @@ export const SocialLinksFooter: React.FC<SocialLinksFooterProps> = ({ onGoHome }
           </p>
         </div>
 
-      </div>
+      </motion.div>
     </footer>
   );
 };

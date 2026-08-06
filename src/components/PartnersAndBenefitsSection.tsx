@@ -1,10 +1,17 @@
 import React from 'react';
 import { ShieldCheck, Clock, DollarSign, Headphones, Truck } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export const PartnersAndBenefitsSection: React.FC = () => {
   return (
-    <section className="w-full bg-black text-white font-['DM_Sans',sans-serif] py-16 px-4 sm:px-8 lg:px-12 border-t border-white/10">
-      <div className="max-w-6xl mx-auto space-y-16">
+    <section className="w-full bg-transparent text-white font-['DM_Sans',sans-serif] py-16 px-4 sm:px-8 lg:px-12 border-t border-white/10">
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: false, amount: 0.2 }}
+        className="max-w-6xl mx-auto space-y-16"
+      >
         
         {/* Brand Logos Header */}
         <div className="text-center space-y-8">
@@ -72,7 +79,7 @@ export const PartnersAndBenefitsSection: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch pt-4">
           
           {/* 1. Safety & top quality */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col justify-end space-y-4 hover:border-white/30 transition-all">
+          <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex flex-col justify-end space-y-4 hover:border-white/30 transition-all">
             <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-white">
               <ShieldCheck className="w-5 h-5" />
             </div>
@@ -82,7 +89,7 @@ export const PartnersAndBenefitsSection: React.FC = () => {
           </div>
 
           {/* 2. On time delivery (Orange Accent Featured Card) */}
-          <div className="bg-[#ff4500] text-white rounded-2xl p-6 flex flex-col justify-between space-y-6 shadow-2xl relative overflow-hidden group">
+          <div className="bg-[#ff4500]/80 backdrop-blur-md border border-white/10 text-white rounded-2xl p-6 flex flex-col justify-between space-y-6 shadow-2xl relative overflow-hidden group">
             {/* Subtle background overlay */}
             <div className="absolute -right-6 -bottom-6 opacity-10 pointer-events-none">
               <Truck className="w-40 h-40" />
@@ -103,7 +110,7 @@ export const PartnersAndBenefitsSection: React.FC = () => {
           </div>
 
           {/* 3. Insurance coverage */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col justify-end space-y-4 hover:border-white/30 transition-all">
+          <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex flex-col justify-end space-y-4 hover:border-white/30 transition-all">
             <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-white">
               <DollarSign className="w-5 h-5" />
             </div>
@@ -113,7 +120,7 @@ export const PartnersAndBenefitsSection: React.FC = () => {
           </div>
 
           {/* 4. 24/7 customer support */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col justify-end space-y-4 hover:border-white/30 transition-all">
+          <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex flex-col justify-end space-y-4 hover:border-white/30 transition-all">
             <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-white">
               <Headphones className="w-5 h-5" />
             </div>
@@ -124,7 +131,7 @@ export const PartnersAndBenefitsSection: React.FC = () => {
 
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };

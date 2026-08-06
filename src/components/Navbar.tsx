@@ -2,6 +2,7 @@ import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { ActiveModal } from '../types';
 import { PrimeDanielLogo } from './PrimeDanielLogo';
+import { motion } from 'motion/react';
 
 interface NavbarProps {
   onOpenModal: (modal: ActiveModal) => void;
@@ -9,7 +10,12 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenModal }) => {
   return (
-    <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3 sm:py-6 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-6 z-20 relative bg-black text-white">
+    <motion.header 
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3 sm:py-6 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-6 z-20 relative bg-transparent text-white"
+    >
       {/* Top Row on Mobile: Logo and Get Started */}
       <div className="w-full md:w-auto flex items-center justify-between">
         <div 
@@ -64,7 +70,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal }) => {
           Get Started
         </button>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

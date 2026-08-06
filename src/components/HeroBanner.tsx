@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sparkles } from 'lucide-react';
 import { ActiveModal } from '../types';
+import { motion } from 'motion/react';
 
 interface HeroBannerProps {
   onOpenModal: (modal: ActiveModal) => void;
@@ -8,10 +9,16 @@ interface HeroBannerProps {
 
 export const HeroBanner: React.FC<HeroBannerProps> = ({ onOpenModal }) => {
   return (
-    <section className="relative w-full py-16 sm:py-24 md:py-32 flex flex-col justify-center items-center px-4 sm:px-8 bg-black text-white overflow-hidden font-['DM_Sans',sans-serif]">
+    <section className="relative w-full py-16 sm:py-24 md:py-32 flex flex-col justify-center items-center px-4 sm:px-8 bg-transparent text-white overflow-hidden font-['DM_Sans',sans-serif]">
       
       {/* Center Container */}
-      <div className="flex flex-col items-center text-center max-w-4xl z-10 space-y-8">
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: false, amount: 0.3 }}
+        className="flex flex-col items-center text-center max-w-4xl z-10 space-y-8"
+      >
         
         {/* Early Access Beta Pill Badge */}
         <div 
@@ -42,7 +49,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onOpenModal }) => {
           </button>
         </div>
 
-      </div>
+      </motion.div>
 
     </section>
   );
